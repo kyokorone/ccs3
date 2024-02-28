@@ -44,8 +44,6 @@ int main(void)
 	
 void InputData(float grade[SIZE], float units[SIZE])
 {
-	float un, gr;
-	
 	// User inputs their grade value in. Must be between 0.0 and 4.0.
 	for(int i = 0; i < SIZE; i++)
 		{
@@ -75,17 +73,16 @@ void InputData(float grade[SIZE], float units[SIZE])
 	
 float *CalculateCQPA(float grade[], float units[], float *CQPA)
 {
-	int i;
 	float units_sum = 0, product_sum = 0;
 	
 	//Equations for CQPA calculation
 	
-	for(i = 0; i < SIZE; i++)
+	for(int i = 0; i < SIZE; i++)
 	{
 		units_sum += units[i];
 	}
 	
-	for(i = 0; i < SIZE; i++)
+	for(int i = 0; i < SIZE; i++)
 	{
 		product_sum += (units[i] * grade[i]);
 	}
