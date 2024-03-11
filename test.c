@@ -56,9 +56,14 @@ void InputData(float grade[SIZE], float units[SIZE])
 				printf("\nInvalid input. Must enter a grade between 0.0 and 4.0.");
 		}while (grade[i] < 0.0 || grade[i] > 4.0);
 	}
-
-	printf("\nGrade input successful.");
 	
+	// Displays the inputted grades
+	printf("\nGrade input successful.");
+	printf("\n\nGrades inputted:");
+	for(i = 1; i <= 5; i++)
+		printf("\n\tCourse %d: %.2f ", i, grade[i]);
+	printf("\n");
+
 	// User inputs the number of UNITS in. Must be between 2.0 and 5.0.
 	for(i = 1; i <= SIZE; i++){
 		do{
@@ -70,6 +75,11 @@ void InputData(float grade[SIZE], float units[SIZE])
 	}
 
 	printf("\nUnits input successful.");
+	
+	// Displays the inputted units
+	printf("\n\nUnits inputted:");
+	for(i = 1; i <= 5; i++)
+		printf("\n\tCourse %d: %.2f ", i, units[i]);
                                   
 	return;
 }
