@@ -1,110 +1,152 @@
-/* Angela Sol P. Henson
-Started 02/27/2024
-Finished 02/28/2024
-This C program is another verseion of a CQPA Calculator that uses arrays to pass values. */
+/*
+    Name: Angela Sol Henson
+	Date Started: March 07, 2024
+    Date Finished:
+    Description: Program that simulates a grocery store's maintenance of item records.
+*/
 
-#include<math.h>
-#include<stdio.h>
-#define SIZE 5
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// #include <windows.h>
 
-// function prototypes
-void InputData(float grade[], float units[]);
-float *CalculateCQPA(float grade[], float units[], float *CQPA);
-void OutputCQPA (float *CQPA);
+#define SIZE 20
 
-int main(void)
+typedef struct item_record // structure for the item record
 {
-	int answer;
-	float units[SIZE] = {0};
-	float grade[SIZE] = {0};
-	float CQPA;
+  int item_number[SIZE];
+  char item_name[SIZE];
+  char item_company[SIZE];
+  char item_type[SIZE];
+  float selling_price;
+  int item_stock;
+  int item_reorder;
+} record;
+
+// functions to build
+	//int EditRecord(/**/
+	//int DeleteRecord(/**/);
+	//int ReorderRecord(/**/);
+	//int TypeFilter(/**/);
+	//int CompanyFilter(/**/);
+	//int DisplayAll(/**/);
+	//int DisplayType(/**/);
+	//int DisplayCompany(/***/);
+
+int MainMenu(void);
+int DataEntry(record itemrec[SIZE]);
+
+int main (void)
+{
+	record item[SIZE];
+	int i;
+
+	do {
+		printf("--- INVENTORY MAINTENANCE ---");
+		puts("[1] Add an item record");
+		puts("[2] Display all item records");
+		puts("[3] Search for an item record");
+		puts("[4] Search and edit an item record");
+		puts("[5] Search and delete an item record");
+		puts("[6] Display all item records equal to or below reorder point");
+		puts("[7] Display all items by type");
+		puts("[8] Display all item by company");
+		puts("[9] Exit");
+
+		printf("Select an option: ");
+		scanf("%d", &i);
+		if (i = 1)
+			DataEntry(item);
+
+	}while (i != 9);
+
+}
+
+int DataEntry(record itemrec[SIZE])
+{
+	int number [SIZE];
+	char name [SIZE];
+	char company [SIZE];
+	char type [SIZE];
+	float price;
+	int stock;
+	int reorder;
+
+	puts("--- NEW ITEM RECORD ---");
+
+	printf("Enter item number: ");
+	gets(number);
+	strcpy (item[number].item_number, number);
+
+	printf("Enter item name: ");
+	gets(name);
+	strcpy (item[number].item_name, name);
+
+	printf("Enter item company: ");
+	gets(company);
+	strcpy (item[number].item_company, company);
+
+	printf("Enter item type: ");
+	gets(type);
+	strcpy (item[number].item_type, type);
+
+	printf("Enter selling price: ");
+	gets(price);
+	strcpy (item[number].selling_price, price);
+
+	printf("Enter item stock-on-hand: ");
+	gets(stock);
+	strcpy (item[number].item_stock, stock);
+
+	printf("Enter item reorder point: ");
+	gets(reorder);
+	strcpy (item[number].item_reorder, reorder);
+}
+
+/*
+	int sID;
+	char LName [NAMESIZE];
+	char FName [NAMESIZE];
+	char College [COLLEGESIZE];
+	char Degree [DEGREESIZE];
+	int YrLevel;
 	
-	// This is a loop that allows the user to repeatedly use the program as much as they want.
-	do{
-		printf("\nThis program is a CQPA Calculator based on five (5) courses or subjects.\n");		
+	printf("\n Enter data for student %d: ", count + 1);
+	printf("\n\n Student ID: ");
+	scanf("%d", &sID);
+	
+	fflush (stdin);
 		
-		InputData(grade, units);
-		CalculateCQPA(grade, units, &CQPA);
-		OutputCQPA (&CQPA);
-		
-		printf("\n\nWould you like to calculate again? Enter 1 for Yes: ");
-		scanf("%d", &answer);
-		if (answer != 1)
-			break;
-	}while(answer == 1);
-
-	printf("\nThank you. Press any key to exit.");
+	student [count].studID = sID;
 	
-	return 0;
-}
-
-	/* This function is where the user inputs the data for each course--
-	the course grade and the number of units. The function utilizes arrays
-	for storing the users input data.*/
+	printf("\n Student Last Name: ");
 	
-void InputData(float grade[SIZE], float units[SIZE])
-{
-	// User inputs their grade value in. Must be between 0.0 and 4.0.
-	for(int i = 0; i < SIZE; i++)
-		{
-			printf("\nPlease enter your grade for Course %d: ", i);
-			scanf("%f", &grade[i]);
-			if (grade[i] < 0.0 || grade[i] > 4.0) // Error trap if user inputs an invalid grade
-				printf("\nInvalid input. Must enter a grade between 0.0 and 4.0.");
-		}
+	printf("\n Student First Name: ");
+	gets(FName);
+	strcpy (student[count].studFName, FName);
 	
-	printf("\nGrade input successful.\n");
-
-	// User inputs the number of units in. Must be between 2.0 and 5.0.
-	for(int i = 0; i < SIZE; i++)
-		{
-			printf("\nPlease enter the number of units for Course %d: ", i);
-			scanf("%f", &units[i]);
-			if (units[i] < 2.0 || grade[i] > 5.0) // Error trap if user inputs an invalid number of units
-				printf("\nInvalid input. Must enter a number between 2.0 and 5.0.");
-		}
-
-	printf("\nUnits input successful.\n");
-
-	return;
-}
-
-	/* This function is where the Final CQPA is calculated.*/
+	printf("\n Student College: ");
+	gets(College);
+	strcpy (student[count].studCollege, College);
 	
-float *CalculateCQPA(float grade[], float units[], float *CQPA)
-{
-	float units_sum = 0, product_sum = 0;
+	printf("\n Student Degree: ");
+	gets(Degree);
+	strcpy (student[count].studDegree, Degree);
 	
-	//Equations for CQPA calculation
+	printf("\n Student Year Level: ");
+	scanf("%d", &YrLevel);
+	student[count].studYearLevel = YrLevel;
+	fflush (stdin);
 	
-	for(int i = 0; i < SIZE; i++)
-	{
-		units_sum += units[i];
-	}
+	count++;
 	
-	for(int i = 0; i < SIZE; i++)
-	{
-		product_sum += (units[i] * grade[i]);
-	}
-		
-	*CQPA = product_sum/units_sum;
-	
-	return CQPA;
-}
-
-	/* This function displays the final CQPA that was calculated. It then also displays different comments
-	based on the calculated CQPA.*/
-	
-void OutputCQPA(float *CQPA)
-{
-	printf("\nThe final CQPA calculated is %.2f.", *CQPA);
-	
-	if (*CQPA < 1.0)
-		printf("\nYou are advised to shift to another course.");
-	if (*CQPA >= 1.0 && *CQPA <= 1.9)
-		printf("\nYou have a low *CQPA. You must take a remedial course.");
-	if (*CQPA >= 2.0 && *CQPA <= 2.9)
-		printf("\nYour *CQPA is okay, but you can do better than this.");
-	if (*CQPA >= 3.0 && *CQPA <= 4.0)
-		printf("\nVery good! Keep up the good work!");	
-}
+	return count;
+*/
+int EditRecord(/**/);
+int DeleteRecord(/**/);
+int ReorderRecord(/**/);
+int TypeFilter(/**/);
+int CompanyFilter(/**/);
+int DisplayAll(/**/);
+int DisplayType(/**/);
+int DisplayCompany(/***/);
